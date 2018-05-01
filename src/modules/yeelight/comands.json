@@ -1,0 +1,12 @@
+{
+  "ligar_lampada": {
+    "parameters": [
+      "location"
+    ]
+  },
+  "desligar_lampada": {
+    "parameters": [
+      "location"
+    ]
+  }
+}
