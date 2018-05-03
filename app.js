@@ -14,7 +14,7 @@ const io = require('socket.io')(http);
 
 io.on('connection', function(socket){
     socket.on('mika-kernel',function(comand){
-        Mika.run(comand.action);
+        Mika.run(comand.action,comand.parameters);
     });
 });
 

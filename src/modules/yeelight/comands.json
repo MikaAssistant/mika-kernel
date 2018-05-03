@@ -1,12 +1,8 @@
 {
   "ligar_lampada": {
-    "parameters": [
-      "location"
-    ]
+    "parameters": ["device","location"]
   },
   "desligar_lampada": {
-    "parameters": [
-      "location"
-    ]
+    "parameters": ["device","location"]
   }
 }
