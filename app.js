@@ -1,10 +1,13 @@
 'use strict';
-//NLP
+//KERNEL
 const env = require('dotenv').config().parsed;
 const path = require('path');
 const config = path.join(__dirname, './config/mika');
 const Mika = require('./src/Mika');
 require(config)(Mika);
+
+//DATABASE
+const db = require(__dirname+"/../../config/database");
 
 //HTTP
 const express = require('express');
