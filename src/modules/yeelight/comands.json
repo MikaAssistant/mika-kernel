@@ -1,4 +1,7 @@
 {
+  "scan_lampada": {
+    "parameters": []
+  },
   "ligar_lampada": {
     "parameters": ["device","location"]
   },

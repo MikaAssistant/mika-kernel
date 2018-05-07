@@ -7,7 +7,7 @@ const Mika = require('./src/Mika');
 require(config)(Mika);
 
 //DATABASE
-const db = require(__dirname+"/../../config/database");
+const db = require(__dirname+"/config/database");
 
 //HTTP
 const express = require('express');
@@ -17,7 +17,7 @@ const io = require('socket.io')(http);
 
 io.on('connection', function(socket){
     socket.on('mika-kernel',function(comand){
-        Mika.run(comand.action,comand.parameters);
+        let r = Mika.run(comand.action,comand.parameters);
     });
 });
 
