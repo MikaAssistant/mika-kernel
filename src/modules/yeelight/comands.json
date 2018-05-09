@@ -7,5 +7,8 @@
   },
   "desligar_lampada": {
     "parameters": ["device","location"]
+  },
+  "trocar_cor_lampada": {
+    "parameters": ["device","location","color"]
   }
 }
