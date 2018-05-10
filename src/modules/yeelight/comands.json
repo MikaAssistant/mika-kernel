@@ -3,12 +3,12 @@
     "parameters": []
   },
   "ligar_lampada": {
-    "parameters": ["device","location"]
+    "parameters": ["device","group"]
   },
   "desligar_lampada": {
-    "parameters": ["device","location"]
+    "parameters": ["device","group"]
   },
   "trocar_cor_lampada": {
-    "parameters": ["device","location","color"]
+    "parameters": ["device","group","color"]
   }
 }

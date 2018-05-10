@@ -4,7 +4,7 @@ const rgb = require('./../../../config/rgbToInteger.json');
 const Device = require('yeelight.js').Device;
 const Yeelight = require('yeelight.js').Yeelight;
 const yeelight = new Yeelight({verbose: true});
-const Device = require('./../database/models/device');
+const DeviceModel = require('../../database/models/device');
 
 let YeelightModule = {
     comands: comands,
@@ -16,7 +16,7 @@ let YeelightModule = {
 
     },
     ligar_lampada: function (parameters) {
-        Device.findOne({
+        DeviceModel.findOne({
             name: 'lampada',
             group: parameters.group
         }, function (err, d) {
@@ -36,7 +36,7 @@ let YeelightModule = {
         });
     },
     desligar_lampada: function (parameters) {
-        Device.findOne({
+        DeviceModel.findOne({
             name: 'lampada',
             group: parameters.group
         }, function (err, d) {
@@ -57,11 +57,14 @@ let YeelightModule = {
     },
     trocar_cor_lampada: function (parameters) {
 
-        Device.findOne({
+        let cor = rgb[parameters.cor];
+
+        DeviceModel.findOne({
             name: 'lampada',
             group: parameters.group
-        }, function (err, d) {
+        }, function(err, d) {
             if(err) {
+                console.log(err)
                 return;
             }
             const device = new Device({
@@ -69,8 +72,6 @@ let YeelightModule = {
                 address: d.address,
                 port: d.port,
              });
-        
-            let cor = rgb[parameters.color];
         
             device
                 .setRgb(cor).then(() => console.log('done'))
