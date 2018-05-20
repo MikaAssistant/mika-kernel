@@ -1,6 +1,10 @@
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://'+process.env.DB_HOST+'/'+process.env.DB_DATABASE);
+const low = require('lowdb');
+const FileSync = require('lowdb/adapters/FileSync');
 
-const db = mongoose.connection;
+const adapter = new FileSync('./src/database/db.json');
+const db = low(adapter);
+
+// Set some defaults (required if your JSON file is empty)
+db.defaults({ devices: [] }).write()
 
 module.exports = db;
