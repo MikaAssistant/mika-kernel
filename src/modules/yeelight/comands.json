@@ -10,5 +10,8 @@
   },
   "trocar_cor_lampada": {
     "parameters": ["device","group","color"]
+  },
+  "trocar_cena": {
+    "parameters": ["device","group","scene"]
   }
 }

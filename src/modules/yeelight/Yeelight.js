@@ -1,6 +1,7 @@
 'use strict';
 const comands = require(__dirname + "/comands.json");
 const rgb = require('./../../../config/rgbToInteger.json');
+const YeelightScenes = require('./../../../config/YeelightScene.json');
 const Device = require('yeelight.js').Device;
 const Yeelight = require('yeelight.js').Yeelight;
 const yeelight = new Yeelight({verbose: true});
@@ -51,6 +52,21 @@ let YeelightModule = {
          });
          device
             .setRgb(cor).then(() => console.log('done'))
+            .catch((err) => console.log(err));
+        return true;
+    },
+    trocar_cena: function (parameters) {
+
+        let scene = YeelightScenes[parameters.YeelightScenes];
+
+        let d = db.get('devices').find({name: 'lampada', group: parameters.group}).value();
+        const device = new Device({
+            id: d.id,
+            address: d.address,
+            port: d.port,
+         });
+         device
+            .setScene(scene.propriedade, scene.val1, scene.val2, scene.val3).then(() => console.log('done'))
             .catch((err) => console.log(err));
         return true;
     }
