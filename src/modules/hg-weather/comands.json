@@ -1,0 +1,5 @@
+{
+  "previsao_do_tempo": {
+    "parameters": ["city"]
+  }
+}

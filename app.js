@@ -6,11 +6,11 @@ const config = path.join(__dirname, './config/mika');
 const Mika = require('./src/Mika');
 require(config)(Mika);
 
-//DATABASE
-const db = require(__dirname+"/config/database");
-
-socket.on('kernel',function(comand){
-    let r = Mika.run(comand.action,comand.parameters);
+socket.on('kernel',async function(comand){
+    let response = await Mika.run(comand.action,comand.parameters);
+    if(response.message !== null){
+        socket.emit('client',response.message);
+    }
 });
 
 console.log('Mika Kernel Running');
