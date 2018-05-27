@@ -2,16 +2,16 @@
   "scan_lampada": {
     "parameters": []
   },
-  "ligar_lampada": {
+  "ligarDevice": {
     "parameters": ["device","group"]
   },
-  "desligar_lampada": {
+  "desligarDevice": {
     "parameters": ["device","group"]
   },
-  "trocar_cor_lampada": {
+  "trocarCorDevice": {
     "parameters": ["device","group","color"]
   },
-  "trocar_cena": {
+  "trocarCenaDevice": {
     "parameters": ["device","group","scene"]
   }
 }

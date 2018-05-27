@@ -6,6 +6,7 @@ const Device = require('yeelight.js').Device;
 const Yeelight = require('yeelight.js').Yeelight;
 const yeelight = new Yeelight({verbose: true});
 const db = require("./../../../config/database");
+const Response = require(__dirname + "/../../Response")
 
 let YeelightModule = {
     comands: comands,
@@ -16,59 +17,51 @@ let YeelightModule = {
     scan_lampada: function (parameters) {
 
     },
-    ligar_lampada: function (parameters) {
-        let d = db.get('devices').find({name: 'lampada', group: parameters.group}).value();
+    ligarDevice: async function (parameters) {
+        let d = db.get('devices').find({name: parameters.device, group: parameters.group}).value();
         const device = new Device({
             id: d.id,
             address: d.address,
             port: d.port,
-         });
-         device
-            .powerOn('on').then(() => console.log('done'))
-            .catch((err) => console.log(err));
-        return true;
+        });
+        try {
+            await device.powerOn('on');
+        }catch(err) {}
     },
-    desligar_lampada: function (parameters) {
-        let d = db.get('devices').find({name: 'lampada', group: parameters.group}).value();
+    desligarDevice: async function (parameters) {
+        let d = db.get('devices').find({name: parameters.device, group: parameters.group}).value();
         const device = new Device({
             id: d.id,
             address: d.address,
             port: d.port,
-         });
-         device
-            .powerOn('off').then(() => console.log('done'))
-            .catch((err) => console.log(err));
-        return true;
+        });
+        try {
+            await device.powerOn('off');
+        }catch(err) {}
     },
-    trocar_cor_lampada: function (parameters) {
-
+    trocarCorDevice: async function (parameters) {
         let cor = rgb[parameters.cor];
-
-        let d = db.get('devices').find({name: 'lampada', group: parameters.group}).value();
+        let d = db.get('devices').find({name: parameters.device, group: parameters.group}).value();
         const device = new Device({
             id: d.id,
             address: d.address,
             port: d.port,
-         });
-         device
-            .setRgb(cor).then(() => console.log('done'))
-            .catch((err) => console.log(err));
-        return true;
+        });
+        try {
+            await device.setRgb(cor);
+        }catch(err) {}
     },
-    trocar_cena: function (parameters) {
-
+    trocarCenaDevice: async function (parameters) {
         let scene = YeelightScenes[parameters.YeelightScenes];
-
-        let d = db.get('devices').find({name: 'lampada', group: parameters.group}).value();
+        let d = db.get('devices').find({name: parameters.device, group: parameters.group}).value();
         const device = new Device({
             id: d.id,
             address: d.address,
             port: d.port,
-         });
-         device
-            .setScene(scene.propriedade, scene.val1, scene.val2, scene.val3).then(() => console.log('done'))
-            .catch((err) => console.log(err));
-        return true;
+        });
+        try {
+            await device.setScene(scene.propriedade, scene.val1, scene.val2, scene.val3);
+        }catch(err) {}
     }
 };
 
