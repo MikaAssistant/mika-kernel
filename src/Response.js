@@ -1,6 +1,7 @@
 'use strict';
 let Response = {
-    message: null
+    message: null,
+    action: null
 };
 
 module.exports = Response;

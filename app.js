@@ -9,7 +9,7 @@ require(config)(Mika);
 socket.on('kernel',async function(comand){
     let response = await Mika.run(comand.action,comand.parameters);
     if(response.message !== null){
-        socket.emit('client',response.message);
+        socket.emit('client',response);
     }
 });
 

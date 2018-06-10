@@ -1,5 +1,9 @@
 {
-  "previsao_do_tempo": {
+  "previsaoTempo": {},
+  "previsaoTempoByCity": {
     "parameters": ["city"]
+  },
+  "previsaoTempoByGeolocation": {
+    "parameters": ["latitude","latitude"]
   }
 }
