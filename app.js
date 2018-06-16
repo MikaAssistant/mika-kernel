@@ -6,10 +6,15 @@ const config = path.join(__dirname, './config/mika');
 const Mika = require('./src/Mika');
 require(config)(Mika);
 
-socket.on('kernel',async function(comand){
-    let response = await Mika.run(comand.action,comand.parameters);
-    if(response.message !== null){
-        socket.emit('client',response);
+let target = 'client';
+
+socket.on('kernel',async function(request){
+    let response = await Mika.run(request.action,request.parameters);
+    if(request.target !== undefined){
+        target = request.target;
+    }
+    if(response.message !== null || response.body !== null){
+        socket.emit(target,response);
     }
 });
 
